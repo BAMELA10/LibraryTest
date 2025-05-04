@@ -2,7 +2,7 @@
 
 ## Overview
 LibraryTest is a Selenium WebDriver-based automated testing framework designed to facilitate testing of web applications with a focus on exception handling and login functionality. The framework provides reusable core classes to test common Selenium exceptions and perform login tests, along with organized test cases demonstrating their usage.
-
+   
 ## Features
 - Exception testing for common Selenium exceptions such as:
   - NoSuchElementException
@@ -54,16 +54,33 @@ exception_page.check_ElementNotInteractableException(
 - Firefox WebDriver (geckodriver)
 
 ## Installation
+
 1. Install Python 3.x from [python.org](https://www.python.org/downloads/).
-2. Install Selenium:
+
+2. Install Selenium and pytest dependencies:
    ```
-   pip install selenium
+   pip install selenium pytest
    ```
+
 3. Download and install Firefox WebDriver (geckodriver) from [Mozilla GitHub](https://github.com/mozilla/geckodriver/releases) and ensure it is in your system PATH.
+
 4. Install other dependencies listed in `requirement.txt` if any:
    ```
    pip install -r requirement.txt
    ```
+
+5. Install the LibraryTest framework package locally:
+   - Using setup.py:
+     ```
+     python setup.py install
+     ```
+   - Or using pip in editable mode for development:
+     ```
+     pip install -e .
+     ```
+
+This will install the LibraryTest package and make it available for import in your Python environment.
+   pip install -r requirement.txt
 
 ## Contributing
 Contributions are welcome. Please fork the repository and submit pull requests for improvements or bug fixes.
