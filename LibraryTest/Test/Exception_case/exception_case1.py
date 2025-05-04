@@ -1,5 +1,9 @@
-from Test_framework_lib.exception_test_page import ExceptionTestPage
+from LibraryTest.core.exception_test_page import ExceptionTestPage
 
 #Test case 1 NoSuchElementException
-exception_page = ExceptionTestPage("","")
-exception_page.check_NoSuchElementException()
+exception_page = ExceptionTestPage("https://practicetestautomation.com/", "practice-test-exceptions/")
+exception_page.check_NoSuchElementException(
+    xpath_add_button='//*[@id="add_btn"]',
+    xpath_row2='//*[@id="row2"]'
+
+)

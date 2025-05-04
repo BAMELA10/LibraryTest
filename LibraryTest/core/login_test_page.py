@@ -2,8 +2,9 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
+from .TestPage import TestPage
 
-class LoginTestPage:
+class LoginTestPage(TestPage):
     """
     A class to represent a login test page using Selenium WebDriver.
     this class provides methods to perform positive and negative login tests.
@@ -23,19 +24,24 @@ class LoginTestPage:
                 Performs a negative login test with invalid credentials.
     
     """
-    def __init__(self, base_url, url):
-        self.driver = webdriver.Firefox()
-        self.base_url = base_url
-        self.url = url
-        self.login_url = self.base_url + self.url
+    def __init__(self, base_url, url, username, password):
+        """
+        Initializes the LoginTestPage with a base URL, specific URL, username, and password.
+        Args:
+            base_url (str): The base URL of the website.
+            url (str): The specific URL for the login page.
+            username (str): The username for login.
+            password (str): The password for login.
         
+        """
+        super().__init__(base_url, url)
+        self.username = username
+        self.password = password
 
-    def postive_login_test(self, username, password, xpath_username, xpath_password, xpath_login_button,xpath_logout_button, login_url, confirmation_message):
+    def postive_login_test(self, xpath_username, xpath_password, xpath_login_button,xpath_logout_button, login_url, confirmation_message):
         """
         Performs a positive login test.
         Args:
-            username (str): The username to use for login.
-            password (str): The password to use for login.
             xpath_username (str): The XPath of the username input field.
             xpath_password (str): The XPath of the password input field.
             xpath_login_button (str): The XPath of the login button.
@@ -50,9 +56,9 @@ class LoginTestPage:
             NoSuchElementException: If the xpath of Dom element is not true.
         """
         driver = self.driver
-        driver.get(self.login_url)
-        driver.find_element(By.XPATH, xpath_username).send_keys(username)
-        driver.find_element(By.XPATH, xpath_password).send_keys(password)
+        driver.get(self.final_url)
+        driver.find_element(By.XPATH, xpath_username).send_keys(self.username)
+        driver.find_element(By.XPATH, xpath_password).send_keys(self.password)
         driver.find_element(By.XPATH, xpath_login_button).click()
         WebDriverWait(driver, 10).until(EC.url_to_be(login_url))
         assert driver.current_url == login_url, f"Expected URL: {login_url}, but got: {driver.current_url}"
@@ -63,12 +69,10 @@ class LoginTestPage:
         driver.quit()
         print("Positive login test passed.")
 
-    def invalid_credentials_test(self, username, password, xpath_username, xpath_password, xpath_login_button,xpath_error_message_box,error_message):
+    def invalid_credentials_test(self, xpath_username, xpath_password, xpath_login_button,xpath_error_message_box,error_message):
         """
         Performs a negative login test with invalid credentials.
         Args:
-            username (str): The username to use for login.
-            password (str): The password to use for login.
             xpath_username (str): The XPath of the username input field.
             xpath_password (str): The XPath of the password input field.
             xpath_login_button (str): The XPath of the login button.
@@ -83,9 +87,9 @@ class LoginTestPage:
         
         """
         driver = self.driver
-        driver.get(self.login_url)
-        driver.find_element(By.XPATH, xpath_username).send_keys(username)
-        driver.find_element(By.XPATH, xpath_password).send_keys(password)
+        driver.get(self.final_url)
+        driver.find_element(By.XPATH, xpath_username).send_keys(self.username)
+        driver.find_element(By.XPATH, xpath_password).send_keys(self.password)
         driver.find_element(By.XPATH, xpath_login_button).click()
         WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, xpath_error_message_box)))
         var = driver.find_element(By.XPATH, xpath_error_message_box).is_displayed()

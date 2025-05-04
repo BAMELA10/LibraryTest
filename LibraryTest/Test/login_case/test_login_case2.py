@@ -1,4 +1,4 @@
-from LibraryTest.Test_framework_lib.login_test_page import LoginTestPage
+from LibraryTest.core.login_test_page import LoginTestPage
 
 #Test case 2 Negative username test
 login_page = LoginTestPage("https://practicetestautomation.com/","practice-test-login/")
