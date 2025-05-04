@@ -68,5 +68,3 @@ exception_page.check_ElementNotInteractableException(
 ## Contributing
 Contributions are welcome. Please fork the repository and submit pull requests for improvements or bug fixes.
 
-## License
-This project is licensed under the MIT License.

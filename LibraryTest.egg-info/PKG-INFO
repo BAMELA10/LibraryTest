@@ -1,0 +1,12 @@
+Metadata-Version: 2.4
+Name: LibraryTest
+Version: 0.1
+Summary: A library for testing exceptions in web applications
+Author: BAMELA JORDAN
+Author-email: zoojohan10@gmail.com
+Requires-Dist: selenium
+Requires-Dist: pytest
+Dynamic: author
+Dynamic: author-email
+Dynamic: requires-dist
+Dynamic: summary

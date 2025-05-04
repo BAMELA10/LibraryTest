@@ -1,0 +1,7 @@
+setup.py
+LibraryTest/__init__.py
+LibraryTest.egg-info/PKG-INFO
+LibraryTest.egg-info/SOURCES.txt
+LibraryTest.egg-info/dependency_links.txt
+LibraryTest.egg-info/requires.txt
+LibraryTest.egg-info/top_level.txt
